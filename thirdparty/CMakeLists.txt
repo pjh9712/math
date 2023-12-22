@@ -23,7 +23,8 @@ function(build_thirdparty CONFIGURATION_PACKAGE_PATH)
     message(STATUS "Finish install for ${PROJECT_NAME}.\n")
   endif()
 
-  find_package(${PROJECT_NAME} REQUIRED HINTS ${${PROJECT_NAME}_CMAKE_PATH})
+  # find_package(${PROJECT_NAME} REQUIRED HINTS ${${PROJECT_NAME}_CMAKE_PATH})
+  find_package(GTest REQUIRED HINTS ${${PROJECT_NAME}_CMAKE_PATH})
   message(STATUS "Finish installation verification for ${PROJECT_NAME}.\n")
 endfunction()
 
