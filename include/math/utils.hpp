@@ -4,6 +4,8 @@
 #ifndef MATH__UTILS_HPP_
 #define MATH__UTILS_HPP_
 
-namespace math {}  // namespace math
+namespace math {
+auto IsEqual(double lhs, double rhs) -> bool;
+}  // namespace math
 
 #endif  // MATH__UTILS_HPP_
