@@ -15,6 +15,9 @@ auto Add(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
+  if ((lhs + rhs) <= std::numeric_limits<double>::lowest()) {
+    throw std::underflow_error("Underflow");
+  }
   return lhs + rhs;
 }
 }  // namespace math
