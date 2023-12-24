@@ -18,6 +18,9 @@ auto Add(double lhs, double rhs) -> double {
   if ((lhs + rhs) <= std::numeric_limits<double>::lowest()) {
     throw std::underflow_error("Underflow");
   }
+  if ((lhs + rhs) >= std::numeric_limits<double>::max()) {
+    throw std::overflow_error("Overflow");
+  }
   return lhs + rhs;
 }
 }  // namespace math
