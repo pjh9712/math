@@ -35,6 +35,13 @@ TEST(MathUtils, Add) {
     EXPECT_THROW(Add(std::numeric_limits<double>::quiet_NaN(),
                      std::numeric_limits<double>::quiet_NaN()),
                  std::invalid_argument);
+    EXPECT_THROW(Add(std::numeric_limits<double>::infinity(), rhs),
+                 std::invalid_argument);
+    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::infinity()),
+                 std::invalid_argument);
+    EXPECT_THROW(Add(std::numeric_limits<double>::infinity(),
+                     std::numeric_limits<double>::infinity()),
+                 std::invalid_argument);
   }
 }
 }  // namespace math
