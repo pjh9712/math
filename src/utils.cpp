@@ -4,10 +4,16 @@
 #include "math/utils.hpp"
 
 #include <cmath>
+#include <stdexcept>
 
 namespace math {
 auto IsEqual(double lhs, double rhs) -> bool {
   return (std::abs(lhs - rhs) < std::numeric_limits<double>::epsilon());
 }
-auto Add(double lhs, double rhs) -> double { return lhs + rhs; }
+auto Add(double lhs, double rhs) -> double {
+  if (std::isnan(lhs) || std::isnan(rhs)) {
+    throw std::invalid_argument("Invalid input: NaN");
+  }
+  return lhs + rhs;
+}
 }  // namespace math
