@@ -35,6 +35,7 @@ TEST(MathUtils, Add) {
     EXPECT_THROW(Add(std::numeric_limits<double>::quiet_NaN(),
                      std::numeric_limits<double>::quiet_NaN()),
                  std::invalid_argument);
+
     EXPECT_THROW(Add(std::numeric_limits<double>::infinity(), rhs),
                  std::invalid_argument);
     EXPECT_THROW(Add(lhs, std::numeric_limits<double>::infinity()),
@@ -42,6 +43,14 @@ TEST(MathUtils, Add) {
     EXPECT_THROW(Add(std::numeric_limits<double>::infinity(),
                      std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
+
+    EXPECT_THROW(Add(std::numeric_limits<double>::lowest(), rhs),
+                 std::underflow_error);
+    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::lowest()),
+                 std::underflow_error);
+    EXPECT_THROW(Add(std::numeric_limits<double>::lowest(),
+                     std::numeric_limits<double>::lowest()),
+                 std::underflow_error);
   }
 }
 }  // namespace math
