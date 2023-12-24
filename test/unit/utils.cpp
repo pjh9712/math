@@ -51,6 +51,14 @@ TEST(MathUtils, Add) {
     EXPECT_THROW(Add(std::numeric_limits<double>::lowest(),
                      std::numeric_limits<double>::lowest()),
                  std::underflow_error);
+
+    EXPECT_THROW(Add(std::numeric_limits<double>::max(), rhs),
+                 std::overflow_error);
+    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::max()),
+                 std::overflow_error);
+    EXPECT_THROW(Add(std::numeric_limits<double>::max(),
+                     std::numeric_limits<double>::max()),
+                 std::overflow_error);
   }
 }
 }  // namespace math
