@@ -69,6 +69,14 @@ TEST(MathUtils, Subtract) {
     double result = Subtract(lhs, rhs);
 
     EXPECT_EQ(result, lhs - rhs);
+
+    EXPECT_THROW(Subtract(std::numeric_limits<double>::quiet_NaN(), rhs),
+                 std::invalid_argument);
+    EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::quiet_NaN()),
+                 std::invalid_argument);
+    EXPECT_THROW(Subtract(std::numeric_limits<double>::quiet_NaN(),
+                     std::numeric_limits<double>::quiet_NaN()),
+                 std::invalid_argument);
   }
 }
 }  // namespace math
