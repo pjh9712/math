@@ -33,12 +33,11 @@ auto Subtract(double lhs, double rhs) -> double {
   if ((lhs - rhs) <= std::numeric_limits<double>::lowest()) {
     throw std::underflow_error("Underflow");
   }
-<<<<<<< HEAD
-=======
+
   if ((lhs - rhs) >= std::numeric_limits<double>::max()) {
     throw std::overflow_error("Overflow");
   }
->>>>>>> 673f967 (Refactor Subtract Function to underflow and overflow)
+
   return lhs - rhs;
 }
 }  // namespace math
