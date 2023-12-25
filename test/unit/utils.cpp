@@ -83,8 +83,11 @@ TEST(MathUtils, Subtract) {
     EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
     EXPECT_THROW(Subtract(std::numeric_limits<double>::infinity(),
-                     std::numeric_limits<double>::infinity()),
+                          std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
+
+    EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::max()),
+                 std::underflow_error);
   }
 }
 }  // namespace math
