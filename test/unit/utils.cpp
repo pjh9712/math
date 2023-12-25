@@ -86,8 +86,27 @@ TEST(MathUtils, Subtract) {
                           std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
+<<<<<<< HEAD
     EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::max()),
                  std::underflow_error);
+=======
+    if (rhs > 0) {
+      EXPECT_THROW(Subtract(std::numeric_limits<double>::lowest(), rhs),
+                   std::underflow_error);
+    }
+    if (lhs > 0) {
+      EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::max()),
+                   std::underflow_error);
+    }
+    if (rhs < 0) {
+      EXPECT_THROW(Subtract(std::numeric_limits<double>::max(), rhs),
+                   std::overflow_error);
+    }
+    if (lhs < 0) {
+      EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::lowest()),
+                   std::overflow_error);
+    }
+>>>>>>> 2ecc472 (Subtract Function underflow_error and overflow_error Test Cases)
   }
 }
 }  // namespace math
