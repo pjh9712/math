@@ -23,4 +23,6 @@ auto Add(double lhs, double rhs) -> double {
   }
   return lhs + rhs;
 }
+
+auto Subtract(double lhs, double rhs) -> double { return lhs - rhs; }
 }  // namespace math

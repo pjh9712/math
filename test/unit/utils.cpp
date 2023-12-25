@@ -61,4 +61,14 @@ TEST(MathUtils, Add) {
                  std::overflow_error);
   }
 }
+TEST(MathUtils, Subtract) {
+  for (int i = 0; i < kNumIterations; ++i) {
+    double lhs = dis(gen);
+    double rhs = dis(gen);
+
+    double result = Subtract(lhs, rhs);
+
+    EXPECT_EQ(result, lhs - rhs);
+  }
+}
 }  // namespace math
