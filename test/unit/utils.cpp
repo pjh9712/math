@@ -15,11 +15,11 @@ const int kNumIterations = 1000;
 const double kLowerBound = -1000.0;
 const double kUpperBound = 1000.0;
 
-TEST(MathUtils, Add) {
-  std::random_device rd;
-  std::mt19937 gen(rd());
-  std::uniform_real_distribution<double> dis(kLowerBound, kUpperBound);
+std::random_device rd;
+std::mt19937 gen(rd());
+std::uniform_real_distribution<double> dis(kLowerBound, kUpperBound);
 
+TEST(MathUtils, Add) {
   for (int i = 0; i < kNumIterations; ++i) {
     double lhs = dis(gen);
     double rhs = dis(gen);
