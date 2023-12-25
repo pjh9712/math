@@ -26,8 +26,9 @@ auto Add(double lhs, double rhs) -> double {
 }
 
 auto Subtract(double lhs, double rhs) -> double {
-  if (std::isnan(lhs) || std::isnan(rhs)) {
-    throw std::invalid_argument("Invalid input: NaN ");
+  if (std::isnan(lhs) || std::isnan(rhs) || std::isinf(lhs) ||
+      std::isinf(rhs)) {
+    throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
   return lhs - rhs;
 }
