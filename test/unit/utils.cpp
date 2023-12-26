@@ -107,4 +107,15 @@ TEST(MathUtils, Subtract) {
     }
   }
 }
+
+TEST(MathUtils, Multiply) {
+  for (int i = 0; i < kNumIterations; ++i) {
+    double lhs = dis(gen);
+    double rhs = dis(gen);
+
+    double result = Multiply(lhs, rhs);
+
+    EXPECT_EQ(result, lhs * rhs);
+  }
+}
 }  // namespace math

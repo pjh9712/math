@@ -40,4 +40,6 @@ auto Subtract(double lhs, double rhs) -> double {
 
   return lhs - rhs;
 }
+
+auto Multiply(double lhs, double rhs) -> double { return lhs * rhs; }
 }  // namespace math
