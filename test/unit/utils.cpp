@@ -103,11 +103,11 @@ TEST(MathUtils, Multiply) {
                           std::numeric_limits<double>::quiet_NaN()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Add(std::numeric_limits<double>::infinity(), rhs),
+    EXPECT_THROW(Multiply(std::numeric_limits<double>::infinity(), rhs),
                  std::invalid_argument);
-    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::infinity()),
+    EXPECT_THROW(Multiply(lhs, std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
-    EXPECT_THROW(Add(std::numeric_limits<double>::infinity(),
+    EXPECT_THROW(Multiply(std::numeric_limits<double>::infinity(),
                      std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
   }
