@@ -131,7 +131,7 @@ TEST(MathUtils, Divide) {
     EXPECT_THROW(Divide(lhs, std::numeric_limits<double>::quiet_NaN()),
                  std::invalid_argument);
     EXPECT_THROW(Divide(std::numeric_limits<double>::quiet_NaN(),
-                          std::numeric_limits<double>::quiet_NaN()),
+                        std::numeric_limits<double>::quiet_NaN()),
                  std::invalid_argument);
 
     EXPECT_THROW(Divide(std::numeric_limits<double>::infinity(), rhs),
@@ -139,8 +139,10 @@ TEST(MathUtils, Divide) {
     EXPECT_THROW(Divide(lhs, std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
     EXPECT_THROW(Divide(std::numeric_limits<double>::infinity(),
-                          std::numeric_limits<double>::infinity()),
+                        std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
+
+    EXPECT_THROW(Divide(lhs, 0.0), std::invalid_argument);
   }
 }
 }  // namespace math
