@@ -16,8 +16,9 @@ auto Add(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
-  if ((lhs + rhs) <= std::numeric_limits<double>::lowest() ||
-      (lhs + rhs) >= std::numeric_limits<double>::max()) {
+
+  if ((lhs > 0 && rhs > std::numeric_limits<double>::max() - lhs) ||
+      (lhs < 0 && rhs < std::numeric_limits<double>::lowest() - lhs)) {
     throw std::overflow_error("Overflow");
   }
 
@@ -29,8 +30,9 @@ auto Subtract(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
-  if ((lhs - rhs) <= std::numeric_limits<double>::lowest() ||
-      (lhs - rhs) >= std::numeric_limits<double>::max()) {
+
+  if ((lhs < 0 && rhs > std::numeric_limits<double>::max() + lhs) ||
+      (lhs > 0 && rhs < std::numeric_limits<double>::lowest() + lhs)) {
     throw std::overflow_error("Overflow");
   }
 
