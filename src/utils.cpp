@@ -53,6 +53,10 @@ auto Divide(double lhs, double rhs) -> double {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
 
+  if (rhs == 0.0) {
+    throw std::invalid_argument("Invalid input: Division by zero");
+  }
+
   return lhs / rhs;
 }
 }  // namespace math
