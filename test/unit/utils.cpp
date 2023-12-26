@@ -117,4 +117,30 @@ TEST(MathUtils, Multiply) {
                  std::invalid_argument);
   }
 }
+TEST(MathUtils, Divide) {
+  for (int i = 0; i < kNumIterations; ++i) {
+    double lhs = dis(gen);
+    double rhs = dis(gen);
+
+    double result = Divide(lhs, rhs);
+
+    EXPECT_EQ(result, lhs / rhs);
+
+    EXPECT_THROW(Divide(std::numeric_limits<double>::quiet_NaN(), rhs),
+                 std::invalid_argument);
+    EXPECT_THROW(Divide(lhs, std::numeric_limits<double>::quiet_NaN()),
+                 std::invalid_argument);
+    EXPECT_THROW(Divide(std::numeric_limits<double>::quiet_NaN(),
+                          std::numeric_limits<double>::quiet_NaN()),
+                 std::invalid_argument);
+
+    EXPECT_THROW(Divide(std::numeric_limits<double>::infinity(), rhs),
+                 std::invalid_argument);
+    EXPECT_THROW(Divide(lhs, std::numeric_limits<double>::infinity()),
+                 std::invalid_argument);
+    EXPECT_THROW(Divide(std::numeric_limits<double>::infinity(),
+                          std::numeric_limits<double>::infinity()),
+                 std::invalid_argument);
+  }
+}
 }  // namespace math

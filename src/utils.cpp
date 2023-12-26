@@ -47,4 +47,12 @@ auto Multiply(double lhs, double rhs) -> double {
 
   return lhs * rhs;
 }
+auto Divide(double lhs, double rhs) -> double {
+  if (std::isnan(lhs) || std::isnan(rhs) || std::isinf(lhs) ||
+      std::isinf(rhs)) {
+    throw std::invalid_argument("Invalid input: NaN or Infinity");
+  }
+
+  return lhs / rhs;
+}
 }  // namespace math
