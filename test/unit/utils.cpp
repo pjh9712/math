@@ -15,6 +15,11 @@ const int kNumIterations = 10;
 const double kLowerBound = -1000.0;
 const double kUpperBound = 1000.0;
 
+const double kDoubleMaxValue = std::numeric_limits<double>::max();
+const double kDoubleMinValue = std::numeric_limits<double>::min();
+const double kDoubleLowestValue = std::numeric_limits<double>::lowest();
+const double kEpsilon = std::numeric_limits<double>::epsilon();
+
 std::random_device rd;
 std::mt19937 gen(rd());
 std::uniform_real_distribution<double> dis(kLowerBound, kUpperBound);
@@ -44,12 +49,9 @@ TEST(MathUtils, Add) {
                      std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Add(std::numeric_limits<double>::lowest(),
-                     std::numeric_limits<double>::lowest()),
+    EXPECT_THROW(Add(kDoubleLowestValue, kDoubleLowestValue),
                  std::overflow_error);
-    EXPECT_THROW(Add(std::numeric_limits<double>::max(),
-                     std::numeric_limits<double>::max()),
-                 std::overflow_error);
+    EXPECT_THROW(Add(kDoubleMaxValue, kDoubleMaxValue), std::overflow_error);
   }
 }
 TEST(MathUtils, Subtract) {
@@ -77,12 +79,8 @@ TEST(MathUtils, Subtract) {
                           std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Subtract(std::numeric_limits<double>::lowest(),
-                     std::numeric_limits<double>::max()),
-                 std::overflow_error);
-    EXPECT_THROW(Subtract(std::numeric_limits<double>::max(),
-                     std::numeric_limits<double>::lowest()),
-                 std::overflow_error);
+    EXPECT_THROW(Subtract(kDoubleLowestValue, kDoubleMaxValue), std::overflow_error);
+    EXPECT_THROW(Subtract(kDoubleMaxValue, kDoubleLowestValue), std::overflow_error);
   }
 }
 
@@ -108,7 +106,7 @@ TEST(MathUtils, Multiply) {
     EXPECT_THROW(Multiply(lhs, std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
     EXPECT_THROW(Multiply(std::numeric_limits<double>::infinity(),
-                     std::numeric_limits<double>::infinity()),
+                          std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
   }
 }
