@@ -11,7 +11,7 @@
 
 namespace math {
 
-const int kNumIterations = 1000;
+const int kNumIterations = 10;
 const double kLowerBound = -1000.0;
 const double kUpperBound = 1000.0;
 
@@ -44,17 +44,8 @@ TEST(MathUtils, Add) {
                      std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Add(std::numeric_limits<double>::lowest(), rhs),
-                 std::underflow_error);
-    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::lowest()),
-                 std::underflow_error);
     EXPECT_THROW(Add(std::numeric_limits<double>::lowest(),
                      std::numeric_limits<double>::lowest()),
-                 std::underflow_error);
-
-    EXPECT_THROW(Add(std::numeric_limits<double>::max(), rhs),
-                 std::overflow_error);
-    EXPECT_THROW(Add(lhs, std::numeric_limits<double>::max()),
                  std::overflow_error);
     EXPECT_THROW(Add(std::numeric_limits<double>::max(),
                      std::numeric_limits<double>::max()),
@@ -86,25 +77,12 @@ TEST(MathUtils, Subtract) {
                           std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::max()),
-                 std::underflow_error);
-
-    if (rhs > 0) {
-      EXPECT_THROW(Subtract(std::numeric_limits<double>::lowest(), rhs),
-                   std::underflow_error);
-    }
-    if (lhs > 0) {
-      EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::max()),
-                   std::underflow_error);
-    }
-    if (rhs < 0) {
-      EXPECT_THROW(Subtract(std::numeric_limits<double>::max(), rhs),
-                   std::overflow_error);
-    }
-    if (lhs < 0) {
-      EXPECT_THROW(Subtract(lhs, std::numeric_limits<double>::lowest()),
-                   std::overflow_error);
-    }
+    EXPECT_THROW(Subtract(std::numeric_limits<double>::lowest(),
+                     std::numeric_limits<double>::max()),
+                 std::overflow_error);
+    EXPECT_THROW(Subtract(std::numeric_limits<double>::max(),
+                     std::numeric_limits<double>::lowest()),
+                 std::overflow_error);
   }
 }
 

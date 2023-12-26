@@ -16,12 +16,11 @@ auto Add(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
-  if ((lhs + rhs) <= std::numeric_limits<double>::lowest()) {
-    throw std::underflow_error("Underflow");
-  }
-  if ((lhs + rhs) >= std::numeric_limits<double>::max()) {
+  if ((lhs + rhs) <= std::numeric_limits<double>::lowest() ||
+      (lhs + rhs) >= std::numeric_limits<double>::max()) {
     throw std::overflow_error("Overflow");
   }
+
   return lhs + rhs;
 }
 
@@ -30,11 +29,8 @@ auto Subtract(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
-  if ((lhs - rhs) <= std::numeric_limits<double>::lowest()) {
-    throw std::underflow_error("Underflow");
-  }
-
-  if ((lhs - rhs) >= std::numeric_limits<double>::max()) {
+  if ((lhs - rhs) <= std::numeric_limits<double>::lowest() ||
+      (lhs - rhs) >= std::numeric_limits<double>::max()) {
     throw std::overflow_error("Overflow");
   }
 
@@ -46,6 +42,7 @@ auto Multiply(double lhs, double rhs) -> double {
       std::isinf(rhs)) {
     throw std::invalid_argument("Invalid input: NaN or Infinity");
   }
+
   return lhs * rhs;
 }
 }  // namespace math
