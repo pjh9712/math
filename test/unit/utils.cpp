@@ -49,9 +49,12 @@ TEST(MathUtils, Add) {
                      std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Add(kDoubleLowestValue, kDoubleLowestValue),
-                 std::overflow_error);
-    EXPECT_THROW(Add(kDoubleMaxValue, kDoubleMaxValue), std::overflow_error);
+    if (rhs > 0) {
+      EXPECT_THROW(Add(kDoubleMaxValue, rhs), std::overflow_error);
+    }
+    if (rhs < 0) {
+      EXPECT_THROW(Add(kDoubleLowestValue, rhs), std::overflow_error);
+    }
   }
 }
 TEST(MathUtils, Subtract) {
@@ -79,8 +82,12 @@ TEST(MathUtils, Subtract) {
                           std::numeric_limits<double>::infinity()),
                  std::invalid_argument);
 
-    EXPECT_THROW(Subtract(kDoubleLowestValue, kDoubleMaxValue), std::overflow_error);
-    EXPECT_THROW(Subtract(kDoubleMaxValue, kDoubleLowestValue), std::overflow_error);
+    if (rhs > 0) {
+      EXPECT_THROW(Subtract(kDoubleLowestValue, rhs), std::overflow_error);
+    }
+    if (rhs < 0) {
+      EXPECT_THROW(Subtract(kDoubleMaxValue, rhs), std::overflow_error);
+    }
   }
 }
 
